@@ -1,0 +1,16 @@
+﻿  stdafx.cpp
+  AI.cpp
+  AssemblyInfo.cpp
+AssemblyInfo.cpp(40): warning C4947: 'System::Security::Permissions::SecurityAction::RequestMinimum': marked as obsolete
+  AssemblyInfo.cpp(40): note: Message: 'Assembly level declarative security is obsolete and is no longer enforced by the CLR by default. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.'
+  BackgammonAI.cpp
+  BackgammonBoard.cpp
+  BackgammonGame.cpp
+  Backgammon.cpp
+  BackgammonPlayer.cpp
+  Board.cpp
+  Game.cpp
+  Player.cpp
+  Generating Code...
+  .NETFramework,Version=v4.5.2.AssemblyAttributes.cpp
+  GameBackgammon.vcxproj -> D:\Sources\Github\console-games\Release\Backgammon.exe
