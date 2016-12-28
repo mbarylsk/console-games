@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{53515FF7-E0AB-4B13-99F7-88381228FDC2}</ProjectGuid>
+    <ProjectGuid>{4840DA17-3807-4E7B-91DB-E6E0C5E5F53D}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Otello</RootNamespace>
   </PropertyGroup>

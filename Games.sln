@@ -1,11 +1,13 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C++ Express 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TicTacToe", "GameTicTacToe\GameTicTacToe.vcxproj", "{DE95B40E-23DA-43DA-855C-1CC8276C8F96}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Backgammon", "GameBackgammon\GameBackgammon.vcxproj", "{BAC643A5-FC32-4A75-8257-C3E5A0D9B9C6}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Otello", "Otello\Otello.vcxproj", "{53515FF7-E0AB-4B13-99F7-88381228FDC2}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Otello", "GameOtello\Otello.vcxproj", "{4840DA17-3807-4E7B-91DB-E6E0C5E5F53D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +23,10 @@ Global
 		{BAC643A5-FC32-4A75-8257-C3E5A0D9B9C6}.Debug|Win32.Build.0 = Debug|Win32
 		{BAC643A5-FC32-4A75-8257-C3E5A0D9B9C6}.Release|Win32.ActiveCfg = Release|Win32
 		{BAC643A5-FC32-4A75-8257-C3E5A0D9B9C6}.Release|Win32.Build.0 = Release|Win32
-		{53515FF7-E0AB-4B13-99F7-88381228FDC2}.Debug|Win32.ActiveCfg = Debug|Win32
-		{53515FF7-E0AB-4B13-99F7-88381228FDC2}.Debug|Win32.Build.0 = Debug|Win32
-		{53515FF7-E0AB-4B13-99F7-88381228FDC2}.Release|Win32.ActiveCfg = Release|Win32
-		{53515FF7-E0AB-4B13-99F7-88381228FDC2}.Release|Win32.Build.0 = Release|Win32
+		{4840DA17-3807-4E7B-91DB-E6E0C5E5F53D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4840DA17-3807-4E7B-91DB-E6E0C5E5F53D}.Debug|Win32.Build.0 = Debug|Win32
+		{4840DA17-3807-4E7B-91DB-E6E0C5E5F53D}.Release|Win32.ActiveCfg = Release|Win32
+		{4840DA17-3807-4E7B-91DB-E6E0C5E5F53D}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
