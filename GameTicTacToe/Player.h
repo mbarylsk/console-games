@@ -21,17 +21,17 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef PLAYER_H
 #define PLAYER_H
 
-/* Player of the game */
+// Player of the game
 class Player
 {
 public:
-	/* Constructor */
+	// Constructor
 	Player (bool machine, int color, bool active);
 
-	/* Destructor */
+	// Destructor
 	virtual ~Player(void);
 
-	/* Player properties */
+	// Player properties
 	bool IsMachine (void) const;
 	bool IsActive (void) const;
 	int GetColor (void) const;
@@ -39,10 +39,10 @@ public:
 	void MakeInactive (void);
 
 protected:
-	/* Player properties */
+	// Player properties
 	bool machine;
 	bool active;
 	int color;
 };
 
-#endif /* PLAYER_H */
+#endif // PLAYER_H
