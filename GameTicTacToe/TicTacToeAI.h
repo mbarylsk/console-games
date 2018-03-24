@@ -1,5 +1,5 @@
 /*
-Copyright(C) 2012-2016  Marcin Barylski
+Copyright(C) 2012-2018  Marcin Barylski
 
 This program is free software : you can redistribute it and / or modify
 it under the terms of the GNU General Public License as published by
@@ -24,26 +24,26 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef TICTACTOEAI_H
 #define TICTACTOEAI_H
 
-/* TicTacToe Player */
+// TicTacToe artifical intelligence
 class TicTacToeAI : public AI
 {
 public:
-	/* Constructors */
+	// Constructors
 	TicTacToeAI (void);
 
-	/* Destructors */
+	// Destructors
 	virtual ~TicTacToeAI (void);
 
-	/* Score calculation */
+	// Score calculation
 	int FindBestMove (TicTacToeBoard* board, USHORT &px, USHORT &py, BOARD_CELL_STATE mark);
 
-	/* Graphics */
+	// Graphics
 	void Draw (void) const;
 
 private:
-	/* Score calculation */
+	// Score calculation
 	int CalculateScore (TicTacToeBoard* board, USHORT x, USHORT y, BOARD_CELL_STATE mark) const;
 	int boardAIScore[BOARD_NO_OF_ROWS][BOARD_NO_OF_ROWS];
 };
 
-#endif /* TICTACTOEAI_H */
+#endif // TICTACTOEAI_H

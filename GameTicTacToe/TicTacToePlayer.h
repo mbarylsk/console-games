@@ -1,5 +1,5 @@
 /*
-Copyright(C) 2012-2016  Marcin Barylski
+Copyright(C) 2012-2018  Marcin Barylski
 
 This program is free software : you can redistribute it and / or modify
 it under the terms of the GNU General Public License as published by
@@ -24,27 +24,26 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef TICTACTOEPLAYER_H
 #define TICTACTOEPLAYER_H
 
-/* TicTacToe Player */
+// TicTacToe Player
 class TicTacToePlayer : public Player
 {
 public:
-	/* Constructors */
-	TicTacToePlayer (void);
+	// Constructors
 	TicTacToePlayer (BOARD_CELL_STATE mark, bool machine, int color, bool active);
 
-	/* Destructors */
+	// Destructors
 	virtual ~TicTacToePlayer (void);
 
-	/* Management */
+	// Management
 	BOARD_CELL_STATE GetMark (void) const;
 
-	/* Graphics */
+	// Graphics
 	void PrintName (void) const;
 	void PrintMark (void) const;
 
 private:
-	/* Player mark */
+	// Player mark
 	BOARD_CELL_STATE mark;
 };
 
-#endif /* TICTACTOEPLAYER_H */
+#endif // TICTACTOEPLAYER_H

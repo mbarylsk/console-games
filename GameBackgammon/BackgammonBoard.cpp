@@ -29,32 +29,32 @@ BackgammonBoard::BackgammonBoard (void)
 	/* all fields empty */
 	for (i= 0; i < NUMBER_OF_FIELDS; i++)
 	{
-		this->board[i][PLAYER_HUMAN]= 0;
-		this->board[i][PLAYER_MACHINE]= 0;
+		this->board[i][PLAYER_HUMAN] = 0;
+		this->board[i][PLAYER_MACHINE] = 5;
 	}
 
 	/* some of them should have something */
-	this->board[0][PLAYER_HUMAN]= 2;
-	this->board[5][PLAYER_MACHINE]= 5;
-	this->board[7][PLAYER_MACHINE]= 3;
-	this->board[11][PLAYER_HUMAN]= 5;
-	this->board[12][PLAYER_MACHINE]= 5;
-	this->board[16][PLAYER_HUMAN]= 3;
-	this->board[18][PLAYER_HUMAN]= 5;
-	this->board[23][PLAYER_MACHINE]= 2;
-	this->board[18][PLAYER_HUMAN]= 5;
-	this->board[23][PLAYER_MACHINE]= 2;
+	this->board[0][PLAYER_HUMAN] = 2;
+	this->board[5][PLAYER_MACHINE] = 5;
+	this->board[7][PLAYER_MACHINE] = 3;
+	this->board[11][PLAYER_HUMAN] = 5;
+	this->board[12][PLAYER_MACHINE] = 5;
+	this->board[16][PLAYER_HUMAN] = 3;
+	this->board[18][PLAYER_HUMAN] = 5;
+	this->board[23][PLAYER_MACHINE] = 2;
+	this->board[18][PLAYER_HUMAN] = 5;
+	this->board[23][PLAYER_MACHINE] = 2;
 
 	/* home and finish - they are empty */
 	/* tokens cannot be removed yet */
-	for (i= 0; i < NUMBER_OF_COLORS; i++)
+	for (i = 0; i < NUMBER_OF_COLORS; i++)
 	{
-		this->home[i]= 0;	
-		this->finish[i]= 0;
-		this->tokensAtFinalQuarter[i]= false;
+		this->home[i] = 2;	
+		this->finish[i] = 0;
+		this->tokensAtFinalQuarter[i] = false;
 	}
 
-	this->tokensSeparated= false;
+	this->tokensSeparated = false;
 }
 
 /*
@@ -114,7 +114,7 @@ BackgammonBoard::CalculateScore (USHORT colorNo, bool withAI) const
 	/* human */
 	if (colorNo == PLAYER_HUMAN)
 	{
-		for (i= 0; i < NUMBER_OF_FIELDS; i++)
+		for (i = 0; i < NUMBER_OF_FIELDS; i++)
 		{
 			if (this->board[i][colorNo] > 0)
 			{
@@ -141,7 +141,7 @@ BackgammonBoard::CalculateScore (USHORT colorNo, bool withAI) const
 	/* machine */
 	else
 	{
-		for (i= 0; i < NUMBER_OF_FIELDS; i++)
+		for (i = 0; i < NUMBER_OF_FIELDS; i++)
 		{
 			if (this->board[i][colorNo] > 0)
 			{
@@ -183,7 +183,7 @@ BackgammonBoard::CheckIfTokensAreSeparated (void) const
 	}
 
 	/* if all tokens are outside home field */
-	for (i= 0; i < NUMBER_OF_FIELDS; i++)
+	for (i = 0; i < NUMBER_OF_FIELDS; i++)
 	{
 		/* remember that at least one human token is found */
 		if ( this->board[i][PLAYER_HUMAN] > 0)
@@ -245,12 +245,12 @@ bool
 BackgammonBoard::CheckIfAllTokensInFinishQuarter (USHORT colorNo) const
 {
 	int i;
-	UINT sum= 0;
+	UINT sum = 0;
 
 	/* human goes forward */
 	if (colorNo == PLAYER_HUMAN)
 	{
-		for (i= 0; i < NUMBER_OF_FIELDS- 6; i++)
+		for (i = 0; i < NUMBER_OF_FIELDS - 6; i++)
 		{
 			sum+= this->board[i][PLAYER_HUMAN];
 		}
@@ -262,7 +262,7 @@ BackgammonBoard::CheckIfAllTokensInFinishQuarter (USHORT colorNo) const
 	/* machine goes backward */
 	else if (colorNo == PLAYER_MACHINE)
 	{
-		for (i= NUMBER_OF_FIELDS- 1; i > 5; i--)
+		for (i = NUMBER_OF_FIELDS - 1; i > 5; i--)
 		{
 			sum+= this->board[i][PLAYER_MACHINE];
 		}
@@ -284,19 +284,19 @@ BackgammonBoard::MarkMove (USHORT oldPosition, USHORT newPosition, USHORT colorN
 {
 	USHORT opponentColor;
 
+	// Case 1: No move
 	if (oldPosition == newPosition)
 	{
-		/* no move */
 		return MOVE_ERROR_NO_MOVE;
 	}
+	// Case 2: Trying to move on board if some tokens are still at home
 	else if ((GetTokensAtHome(colorNo) > 0) && (oldPosition != BOARD_HOME_VALUE))
 	{
-		/* trying to move on board if some tokens are still at home */
 		return MOVE_ERROR_TOKENS_LEFT_AT_HOME;
 	}
+	// Case 3: No tokens available at source
 	else if (this->board[oldPosition][colorNo] == 0)
 	{
-		/* no token available at source */
 		return MOVE_ERROR_NO_TOKENS_AVAILABLE;
 	}
 	else
@@ -370,13 +370,13 @@ BackgammonBoard::Clone (void)
 	boardCopy = new BackgammonBoard ();
 
 	/* copy all fields */
-	for (i= 0; i < NUMBER_OF_FIELDS; i++)
+	for (i = 0; i < NUMBER_OF_FIELDS; i++)
 	{		
 		boardCopy->board[i][PLAYER_HUMAN] = this->board[i][PLAYER_HUMAN];
 		boardCopy->board[i][PLAYER_MACHINE] = this->board[i][PLAYER_MACHINE];
 	}
 	/* including home and finish */
-	for (i= 0; i < NUMBER_OF_COLORS; i++)
+	for (i = 0; i < NUMBER_OF_COLORS; i++)
 	{
 		boardCopy->home[i]= this->home[i];
 		boardCopy->finish[i]= this->finish[i];
@@ -399,19 +399,19 @@ BackgammonBoard::Draw(BackgammonPlayer* currentPlayer) const
 
 	/* line above */
 	std::cout << "  +";
-	for (i= 0; i < 5; i++)
+	for (i = 0; i < 5; i++)
 	{
 		std::cout << "-";
 	}
 	std::cout << "+";
-	for (i= 0; i < 5; i++)
+	for (i = 0; i < 5; i++)
 	{
 		std::cout << "-";
 	}
 	std::cout << "+" << std::endl;
 
 	/* lines */
-	for (i= 0; i < NUMBER_OF_FIELDS/4; i++)
+	for (i = 0; i < NUMBER_OF_FIELDS/4; i++)
 	{
 		std::cout << " " << LETTER[i];
 		std::cout << "|";
@@ -562,12 +562,12 @@ BackgammonBoard::Draw(BackgammonPlayer* currentPlayer) const
 
 	/* line in the middle */
 	std::cout << "  +";
-	for (i= 0; i < 5; i++)
+	for (i = 0; i < 5; i++)
 	{
 		std::cout << "-";
 	}
 	std::cout << "+";
-	for (i= 0; i < 5; i++)
+	for (i = 0; i < 5; i++)
 	{
 		std::cout << "-";
 	}
@@ -597,7 +597,7 @@ BackgammonBoard::Draw(BackgammonPlayer* currentPlayer) const
 	std::cout << std::endl;
 
 	/* lines */
-	for (i= NUMBER_OF_FIELDS/4; i < NUMBER_OF_FIELDS/2; i++)
+	for (i = NUMBER_OF_FIELDS/4; i < NUMBER_OF_FIELDS/2; i++)
 	{
 		std::cout << " " << LETTER[i];
 		std::cout << "|";
@@ -704,12 +704,12 @@ BackgammonBoard::Draw(BackgammonPlayer* currentPlayer) const
 
 	/* line below */
 	std::cout << "  +";
-	for (i= 0; i < 5; i++)
+	for (i = 0; i < 5; i++)
 	{
 		std::cout << "-";
 	}
 	std::cout << "+";
-	for (i= 0; i < 5; i++)
+	for (i = 0; i < 5; i++)
 	{
 		std::cout << "-";
 	}

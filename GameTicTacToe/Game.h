@@ -1,5 +1,5 @@
 /*
-Copyright(C) 2012-2016  Marcin Barylski
+Copyright(C) 2012-2018  Marcin Barylski
 
 This program is free software : you can redistribute it and / or modify
 it under the terms of the GNU General Public License as published by
@@ -23,32 +23,32 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef GAME_H
 #define GAME_H
 
-/* Generic game */
+// Generic game
 class Game
 {
 public:
-	/* Constructor */
+	// Constructor
 	Game(void);
 
-	/* Destructor */
+	// Destructor
 	virtual ~Game(void);
 
-	/* State of the game */
+	// State of the game
 	virtual bool IsCompleted (void) = 0;
 
-	/* Version of the game */
+	// Version of the game
 	std::string GetVersion (void) const;
 	void SetVersion (std::string);
 
-	/* Moves counter */
+	// Moves counter
 	void IncreaseMovesCount (void);
 	int GetMovesCount (void) const;
 
 protected:
-	/* version of the game */
+	// version of the game
 	std::string version;
-	/* number of moves */
+	// number of moves
 	int numberOfMoves;
 };
 
-#endif /* GAME_H */
+#endif // GAME_H

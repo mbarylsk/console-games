@@ -1,5 +1,5 @@
 /*
-Copyright(C) 2012-2016  Marcin Barylski
+Copyright(C) 2012-2018  Marcin Barylski
 
 This program is free software : you can redistribute it and / or modify
 it under the terms of the GNU General Public License as published by
@@ -29,13 +29,13 @@ TicTacToeGame::TicTacToeGame (bool isLottery)
 	bool isHumanStarting= true;
 	TicTacToePlayer* ptr;
 
-	/* random starter - either human or computer */
+	// random starter - either human or computer
 	if (isLottery)
 	{
-		/* initialize random seed */
+		// initialize random seed
 		srand ( (unsigned int)time(NULL) );
 
-		/* lottery */
+		// lottery
 		i= rand () % 2;
 		switch (i)
 		{
@@ -51,23 +51,23 @@ TicTacToeGame::TicTacToeGame (bool isLottery)
 		}
 	}
 
-	/* set game version */
+	// set game version
 	this->SetVersion (GAME_VERSION);
 
-	/* create game players */
+	// create game players
 	for (i= 0; i < NUMBER_OF_PLAYERS; i++)
 	{
-		/* player 1: machine */
+		// player 1: machine
 		if (i == 0)
 		{
 			ptr= new TicTacToePlayer (X, true, RED, !isHumanStarting);
 		}
-		/* player 2: human */
+		// player 2: human
 		else if (i == 1)
 		{
 			ptr= new TicTacToePlayer (O, false, YELLOW, isHumanStarting);
 		}
-		/* no more players allowed for now */
+		// no more players allowed for now
 		else
 		{
 			break;
@@ -75,7 +75,7 @@ TicTacToeGame::TicTacToeGame (bool isLottery)
 		this->players[i]= ptr;
 	}
 
-	/* no winner yet */
+	// no winner yet
 	this->winner= 0;
 }
 
@@ -86,7 +86,7 @@ TicTacToeGame::~TicTacToeGame (void)
 {
 	int i;
 
-	/* delete players */
+	// delete players
 	for (i= 0; i < NUMBER_OF_PLAYERS; i++)
 	{
 		delete (players[i]);
@@ -102,7 +102,7 @@ TicTacToeGame::GetPlayerWithMark (BOARD_CELL_STATE mark) const
 {
 	int i;
 
-	/* go through all players in the game - their marks should be unique */
+	// go through all players in the game - their marks should be unique
 	for (i= 0; i < NUMBER_OF_PLAYERS; i++)
 	{
 		if (players[i]->GetMark() == mark)
@@ -111,7 +111,7 @@ TicTacToeGame::GetPlayerWithMark (BOARD_CELL_STATE mark) const
 		}
 	}
 
-	/* nothing found */
+	// nothing found
 	return 0;
 }
 
@@ -129,21 +129,21 @@ TicTacToeGame::IsCompleted ()
 
 	if ((player != 0))
 	{
-		/* We got a winner */
+		// We got a winner
 		this->winner= player;
-		/* Game completed */
+		// Game completed
 		return true;
 	}
 	else if (board.IsFull())
 	{
-		/* Board full and nobody won - we have a draw */
+		// Board full and nobody won - we have a draw
 		this->winner= 0;
-		/* Game completed */
+		// Game completed
 		return true;
 	}
 	else if (!board.IsWinPossible())
 	{
-		/* Draw - nobody won */
+		// Draw - nobody won
 		this->winner= 0;
 		/* It is not possible to win this game
 		there is no point in continuing it even if some fields are empty */
@@ -151,7 +151,7 @@ TicTacToeGame::IsCompleted ()
 	}
 	else
 	{
-		/* No winner and game not completed yet */
+		// No winner and game not completed yet
 		this->winner= 0;
 		return false;
 	}
@@ -192,7 +192,7 @@ TicTacToeGame::GetCurrentPlayer(void) const
 {
 	int i;
 
-	/* go through players */
+	// go through players
 	for (i= 0; i < NUMBER_OF_PLAYERS; i++)
 	{
 		if (players[i]->IsActive())
@@ -201,7 +201,7 @@ TicTacToeGame::GetCurrentPlayer(void) const
 		}
 	}
 
-	/* nothing found */
+	// nothing found
 	return 0;
 }
 

@@ -1,5 +1,5 @@
 /*
-Copyright(C) 2012-2016  Marcin Barylski
+Copyright(C) 2012-2018  Marcin Barylski
 
 This program is free software : you can redistribute it and / or modify
 it under the terms of the GNU General Public License as published by
@@ -29,48 +29,48 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef TICTACTOEGAME_H
 #define TICTACTOEGAME_H
 
-const std::string GAME_VERSION = "1.0.0.37";
+const std::string GAME_VERSION = "1.0.0.38";
 const short int NUMBER_OF_PLAYERS = 2;
 
-/* TicTacToe game */
+// TicTacToe game
 class TicTacToeGame : public Game
 {
 public:
-	/* Constructors */
+	// Constructors
 	TicTacToeGame (bool isLottery);
 
-	/* Destructors */
+	//  Destructors
 	virtual ~TicTacToeGame (void);
 
-	/* Game management */	
+	// Game management 	
 	int Move (USHORT x, USHORT y, TicTacToePlayer* player);
 	bool IsCompleted (void);
 	void AICoordinates (TicTacToeAI* ai, USHORT& rx, USHORT& ry, TicTacToePlayer* player);
 	void PressEnterToContinue (void) const;
 
-	/* Input */
+	// Input 
 	void ReadCoordinates (USHORT& rx, USHORT& ry, TicTacToePlayer* player) const;
 
-	/* Graphics */
+	// Graphics 
 	void Draw (void) const;
 	void PrintBanner (void) const;
 	void PrintRules (void) const;
 	void PrintStartScreen (void) const;
 	void PrintEndScreen (void) const;
 	
-	/* Player management */
+	// Player management 
 	TicTacToePlayer* GetWinner (void) const;
 	TicTacToePlayer* GetCurrentPlayer (void) const;	
 	TicTacToePlayer* GetPlayerWithMark (BOARD_CELL_STATE mark) const;
 	void SetNextPlayer (void);
 
 private:
-	/* Game board data structures */
+	// Game board data structures 
 	TicTacToeBoard board;
 
-	/* Player data structures */	
+	// Player data structures 	
 	TicTacToePlayer* winner;	
 	TicTacToePlayer* players[NUMBER_OF_PLAYERS];
 };
 
-#endif /* TICTACTOEGAME_H */
+#endif // TICTACTOEGAME_H

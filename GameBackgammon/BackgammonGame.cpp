@@ -168,10 +168,10 @@ BackgammonGame::GetNumberOfPossibleMoves (BackgammonPlayer* player)
 	BackgammonBoard* futureBoard;
 	USHORT end;
 	int playerColorNo;
-	UINT number= 0;
+	UINT number = 0;
 	int i, j;
 
-	/* if all dice used, no more moves are possible */
+	// Case 0: if all dice used, no more moves are possible
 	if ((player->GetDice(DICE_ONE) == 0) && (player->GetDice(DICE_TWO) == 0) && (player->GetDice(DICE_ONE_DOUBLE) == 0) && (player->GetDice(DICE_TWO_DOUBLE) == 0))
 	{
 		return 0;
@@ -179,7 +179,7 @@ BackgammonGame::GetNumberOfPossibleMoves (BackgammonPlayer* player)
 	
 	playerColorNo = player->GetNumber();
 
-	/* case 1: go through all the regular fields - only if there are no tokens left at home */
+	// Case 1: go through all the regular fields - only if there are no tokens left at home
 	if (this->board.GetTokensAtHome(playerColorNo) == 0)
 	{
 		/* machine */
@@ -187,20 +187,20 @@ BackgammonGame::GetNumberOfPossibleMoves (BackgammonPlayer* player)
 		{
 			for (i= NUMBER_OF_FIELDS- 1; i >= 0; i--)
 			{		
-				for (j= 0; j < DICE_NUMBER; j++)
+				for (j = 0; j < DICE_NUMBER; j++)
 				{			
 					if (player->GetDice(j) > 0)
 					{
-						futureBoard= this->board.Clone ();
+						futureBoard = this->board.Clone ();
 
-						end= NUMBER_OF_FIELDS- player->GetDice(j)- 1;	
+						end = NUMBER_OF_FIELDS- player->GetDice(j)- 1;	
 						if (futureBoard->MarkMove (i, end, playerColorNo) == MOVE_SUCCESS)
 						{
 							number++;
 						}
 
 						free (futureBoard);
-						futureBoard= NULL;
+						futureBoard = NULL;
 					}
 				}
 			}
@@ -208,28 +208,28 @@ BackgammonGame::GetNumberOfPossibleMoves (BackgammonPlayer* player)
 		/* human */
 		else
 		{
-			for (i= 0; i < NUMBER_OF_FIELDS; i++)
+			for (i = 0; i < NUMBER_OF_FIELDS; i++)
 			{		
-				for (j= 0; j < DICE_NUMBER; j++)
+				for (j = 0; j < DICE_NUMBER; j++)
 				{			
 					if (player->GetDice(j) > 0)
 					{
 						futureBoard= this->board.Clone ();
 
-						end= i+ player->GetDice(j);				
+						end = i + player->GetDice(j);				
 						if (futureBoard->MarkMove (i, end, playerColorNo) == MOVE_SUCCESS)
 						{
 							number++;
 						}
 
 						free (futureBoard);
-						futureBoard= NULL;
+						futureBoard = NULL;
 					}
 				}
 			}
 		}
 		/* TO DO */
-		/* case 2: tokens at final quarter */
+		// Case 2: tokens at final quarter
 		if (this->board.CheckIfAllTokensInFinishQuarter (playerColorNo))
 		{
 			/* machine */
@@ -240,13 +240,13 @@ BackgammonGame::GetNumberOfPossibleMoves (BackgammonPlayer* player)
 			/* human */
 			else
 			{
-				for (i= NUMBER_OF_FIELDS-6; i < NUMBER_OF_FIELDS; i++)
+				for (i = NUMBER_OF_FIELDS-6; i < NUMBER_OF_FIELDS; i++)
 				{		
-					for (j= 0; j < DICE_NUMBER; j++)
+					for (j = 0; j < DICE_NUMBER; j++)
 					{			
 						if (player->GetDice(j) > 0)
 						{							
-							end= i+ player->GetDice(j);
+							end = i + player->GetDice(j);
 							if (end > NUMBER_OF_FIELDS)
 							{
 								futureBoard= this->board.Clone ();
@@ -255,7 +255,7 @@ BackgammonGame::GetNumberOfPossibleMoves (BackgammonPlayer* player)
 									number++;
 								}
 								free (futureBoard);
-								futureBoard= NULL;
+								futureBoard = NULL;
 							}
 						}
 					}
@@ -263,27 +263,27 @@ BackgammonGame::GetNumberOfPossibleMoves (BackgammonPlayer* player)
 			}
 		}
 	}
-	/* case 3: some tokens at base */
+	// Case 3: some tokens at base
 	else
 	{
 		/* both human and machine */
-		for (i= 0; i < DICE_NUMBER; i++)
+		for (i = 0; i < DICE_NUMBER; i++)
 		{			
-			futureBoard= this->board.Clone ();
+			futureBoard = this->board.Clone ();
 			if (player->IsMachine())
 			{
-				end= NUMBER_OF_FIELDS- player->GetDice(i);
+				end = NUMBER_OF_FIELDS - player->GetDice(i);
 			}
 			else
 			{
-				end= player->GetDice(i)+ 1;
+				end = player->GetDice(i) + 1;
 			}
 			if (futureBoard->MarkMove (BOARD_HOME_VALUE, end, playerColorNo) == MOVE_SUCCESS)
 			{
 				number++;
 			}
 			free (futureBoard);
-			futureBoard= NULL;
+			futureBoard = NULL;
 		}
 	}
 
@@ -311,7 +311,7 @@ BackgammonGame::Move (USHORT oldPosition, USHORT newPosition, BackgammonPlayer* 
 			}			
 			else
 			{
-				absoluteMove= BOARD_HOME_VALUE- newPosition;
+				absoluteMove = BOARD_HOME_VALUE- newPosition;
 			}
 		}
 		else
@@ -326,12 +326,12 @@ BackgammonGame::Move (USHORT oldPosition, USHORT newPosition, BackgammonPlayer* 
 			}
 			else if (newPosition == BOARD_FINISH_VALUE)
 			{
-				moveInsideBoard= false;
-				absoluteMove= oldPosition- newPosition;
+				moveInsideBoard = false;
+				absoluteMove = oldPosition- newPosition;
 			}
 			else
 			{
-				absoluteMove= oldPosition- newPosition;
+				absoluteMove = oldPosition- newPosition;
 			}
 		}
 	}
@@ -346,7 +346,7 @@ BackgammonGame::Move (USHORT oldPosition, USHORT newPosition, BackgammonPlayer* 
 			}
 			else
 			{
-				absoluteMove= newPosition+ 1;
+				absoluteMove = newPosition+ 1;
 			}
 		}
 		else
@@ -361,12 +361,12 @@ BackgammonGame::Move (USHORT oldPosition, USHORT newPosition, BackgammonPlayer* 
 			}
 			else if (newPosition == BOARD_FINISH_VALUE)
 			{				
-				moveInsideBoard= false;
-				absoluteMove= newPosition- oldPosition- 1;
+				moveInsideBoard = false;
+				absoluteMove = newPosition- oldPosition- 1;
 			}
 			else
 			{
-				absoluteMove= newPosition- oldPosition;
+				absoluteMove = newPosition- oldPosition;
 			}
 		}
 	}
@@ -380,11 +380,11 @@ BackgammonGame::Move (USHORT oldPosition, USHORT newPosition, BackgammonPlayer* 
 	/* try to make this move */
 	if (player->IsMachine())
 	{
-		result= this->board.MarkMove (oldPosition, newPosition, PLAYER_MACHINE);
+		result = this->board.MarkMove (oldPosition, newPosition, PLAYER_MACHINE);
 	}
 	else
 	{
-		result= this->board.MarkMove (oldPosition, newPosition, PLAYER_HUMAN);
+		result = this->board.MarkMove (oldPosition, newPosition, PLAYER_HUMAN);
 	}
 
 	/* use dice if move done */
@@ -415,8 +415,8 @@ BackgammonGame::AICoordinates (BackgammonAI* ai, USHORT &oldPosition, USHORT &ne
 
 	/* AI calculates coordinates of the best possible move */
 	ai->FindBestMove (&board, startPosition, endPosition, player);
-	oldPosition= startPosition;
-	newPosition= endPosition;
+	oldPosition = startPosition;
+	newPosition = endPosition;
 
 	/* display the values */
 	std::cout << std::endl;
@@ -482,7 +482,7 @@ BackgammonGame::TranslateLetterToCoordinate (std::string letter) const
 {
 	USHORT i;
 
-	for (i= 0; i < NUMBER_OF_LETTERS; i++)
+	for (i = 0; i < NUMBER_OF_LETTERS; i++)
 	{
 		/* letter was found */
 		if ( toupper(letter[0]) == LETTER[i] )
@@ -522,7 +522,7 @@ BackgammonGame::GetCurrentPlayer (void) const
 	int i;
 
 	/* go through players */
-	for (i= 0; i < NUMBER_OF_PLAYERS; i++)
+	for (i = 0; i < NUMBER_OF_PLAYERS; i++)
 	{
 		if (players[i]->IsActive())
 		{
@@ -638,7 +638,7 @@ void
 BackgammonGame::PrintHorizontalLine (void) const
 {
 	int i;
-	for (i= 0; i < GAME_SCREEN_WIDTH; i++)
+	for (i = 0; i < GAME_SCREEN_WIDTH; i++)
 	{
 		std::cout << "-";
 	}

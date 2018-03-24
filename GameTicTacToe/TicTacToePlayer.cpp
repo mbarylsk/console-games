@@ -1,5 +1,5 @@
 /*
-Copyright(C) 2012-2016  Marcin Barylski
+Copyright(C) 2012-2018  Marcin Barylski
 
 This program is free software : you can redistribute it and / or modify
 it under the terms of the GNU General Public License as published by
@@ -58,7 +58,7 @@ TicTacToePlayer::PrintName (void) const
 	SetConsoleTextAttribute(hConsole, this->GetColor());  
 	std::cout << "Player" << this->GetMark();
 
-	/* sets color to white */
+	// sets color to white
 	SetConsoleTextAttribute(hConsole, WHITE);
 }
 
@@ -86,6 +86,6 @@ TicTacToePlayer::PrintMark (void) const
 		break;
 	}
 
-	/* sets color to white */
+	// sets color to white
 	SetConsoleTextAttribute(hConsole, WHITE);
 }

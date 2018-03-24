@@ -1,5 +1,5 @@
 /*
-Copyright(C) 2012-2016  Marcin Barylski
+Copyright(C) 2012-2018  Marcin Barylski
 
 This program is free software : you can redistribute it and / or modify
 it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@ TicTacToeAI::TicTacToeAI (void)
 {
 	int i, j;
 
-	/* inits AI scores for board fields - 1 for all fields */
+	// inits AI scores for board fields - 1 for all fields
 	for (i= 0; i < BOARD_NO_OF_ROWS; i++)
 	{
 		for (j= 0; j < BOARD_NO_OF_ROWS; j++)
@@ -60,21 +60,21 @@ TicTacToeAI::CalculateScore (TicTacToeBoard* board, USHORT x, USHORT y, BOARD_CE
 
 	if (board->GetMark(x, y) != EMPTY)
 	{
-		/* non-empty field should not be used - set the lowest possible value */
+		// non-empty field should not be used - set the lowest possible value
 		return finalResult;
 	}
 	else
 	{
-		/* increase AI value by 1 point because field is empty */
+		// increase AI value by 1 point because field is empty
 		finalResult+= SCORE_EMPTY_FIELD;
 
-		/* if in the middle of board - add 1 extra point */
+		// if in the middle of board - add 1 extra point
 		if ((x > 0) && (x < BOARD_NO_OF_ROWS- 1) && (y > 0) && (y < BOARD_NO_OF_ROWS- 1))
 		{
 			finalResult+= SCORE_CENTER_FIELD;
 		}
 
-		/* discover vertical line danger */
+		// discover vertical line danger
 		sumEnemy= 0;
 		sumFriend= 0;
 		sumEmpty= 0;
@@ -97,28 +97,28 @@ TicTacToeAI::CalculateScore (TicTacToeBoard* board, USHORT x, USHORT y, BOARD_CE
 				}
 			}
 		}
-		/* win with this move */
+		// win with this move
 		if (sumFriend == BOARD_LENGTH_OF_WINNING_LINE- 1)
 		{
 			finalResult+= SCORE_WIN_IN_NEXT_MOVE;
 		}
-		/* prevent from defeat */
+		// prevent from defeat
 		if (sumEnemy == BOARD_LENGTH_OF_WINNING_LINE- 1)
 		{
 			finalResult+= SCORE_PREVENT_FROM_DEFEAT;
 		}
-		/* foil enemy good move */
+		// foil enemy good move
 		if ((sumEnemy == BOARD_LENGTH_OF_WINNING_LINE- 2) && (sumFriend == 0))
 		{
 			sumEnemyOptions++;
 		}
-		/* your chance to win in the future */
+		// your chance to win in the future
 		if (sumFriend + sumEmpty == BOARD_LENGTH_OF_WINNING_LINE)
 		{
 			finalResult+= SCORE_CHANCE_IN_FUTURE;
 		}
 
-		/* discover horizontal line danger */
+		// discover horizontal line danger
 		sumEnemy= 0;
 		sumFriend= 0;
 		sumEmpty= 0;
@@ -140,28 +140,28 @@ TicTacToeAI::CalculateScore (TicTacToeBoard* board, USHORT x, USHORT y, BOARD_CE
 				}
 			}
 		}
-		/* win with this move */
+		// win with this move
 		if (sumFriend == BOARD_LENGTH_OF_WINNING_LINE- 1)
 		{
 			finalResult+= SCORE_WIN_IN_NEXT_MOVE;
 		}
-		/* prevent from defeat */
+		// prevent from defeat
 		if (sumEnemy == BOARD_LENGTH_OF_WINNING_LINE- 1)
 		{
 			finalResult+= SCORE_PREVENT_FROM_DEFEAT;
 		}
-		/* foil enemy good move */
+		// foil enemy good move
 		if ((sumEnemy == BOARD_LENGTH_OF_WINNING_LINE- 2) && (sumFriend == 0))
 		{
 			sumEnemyOptions++;
 		}
-		/* your chance to win in the future */
+		// your chance to win in the future
 		if (sumFriend + sumEmpty == BOARD_LENGTH_OF_WINNING_LINE)
 		{
 			finalResult+= SCORE_CHANCE_IN_FUTURE;
 		}
 
-		/* discover up-left, down-right cross line danger */
+		// discover up-left, down-right cross line danger
 		sumEnemy= 0;
 		sumFriend= 0;
 		sumEmpty= 0;
@@ -183,28 +183,28 @@ TicTacToeAI::CalculateScore (TicTacToeBoard* board, USHORT x, USHORT y, BOARD_CE
 				}
 			}
 		}
-		/* win with this move */
+		// win with this move
 		if (sumFriend == BOARD_LENGTH_OF_WINNING_LINE- 1)
 		{
 			finalResult+= SCORE_WIN_IN_NEXT_MOVE;
 		}
-		/* prevent from defeat */
+		// prevent from defeat
 		if (sumEnemy == BOARD_LENGTH_OF_WINNING_LINE- 1)
 		{
 			finalResult+= SCORE_PREVENT_FROM_DEFEAT;
 		}
-		/* foil enemy good move */
+		// foil enemy good move
 		if ((sumEnemy == BOARD_LENGTH_OF_WINNING_LINE- 2) && (sumFriend == 0))
 		{
 			sumEnemyOptions++;
 		}
-		/* your chance to win in the future */
+		// your chance to win in the future
 		if (sumFriend + sumEmpty == BOARD_LENGTH_OF_WINNING_LINE)
 		{
 			finalResult+= SCORE_CHANCE_IN_FUTURE;
 		}
 
-		/* discover down-left, up-right cross line danger */
+		// discover down-left, up-right cross line danger
 		sumEnemy= 0;
 		sumFriend= 0;
 		sumEmpty= 0;
@@ -226,34 +226,34 @@ TicTacToeAI::CalculateScore (TicTacToeBoard* board, USHORT x, USHORT y, BOARD_CE
 				}
 			}
 		}
-		/* win with this move */
+		// win with this move
 		if (sumFriend == BOARD_LENGTH_OF_WINNING_LINE- 1)
 		{
 			finalResult+= SCORE_WIN_IN_NEXT_MOVE;
 		}
-		/* prevent from defeat */
+		// prevent from defeat
 		if (sumEnemy == BOARD_LENGTH_OF_WINNING_LINE- 1)
 		{
 			finalResult+= SCORE_PREVENT_FROM_DEFEAT;
 		}
-		/* foil enemy good move */
+		// foil enemy good move
 		if ((sumEnemy == BOARD_LENGTH_OF_WINNING_LINE- 2) && (sumFriend == 0))
 		{
 			sumEnemyOptions++;
 		}
-		/* your chance to win in the future */
+		// your chance to win in the future
 		if (sumFriend + sumEmpty == BOARD_LENGTH_OF_WINNING_LINE)
 		{
 			finalResult+= SCORE_CHANCE_IN_FUTURE;
 		}
 
-		/* finally, foil enemy good move */
+		// finally, foil enemy good move
 		if (sumEnemyOptions > 1)
 		{
 			finalResult+= SCORE_FOIL_ENEMY_MOVE;
 		}
 
-		/* if current move is not the very best move (neither win nor prevention from defeat) */	
+		// if current move is not the very best move (neither win nor prevention from defeat)
 		if (finalResult < SCORE_PREVENT_FROM_DEFEAT)
 		{
 			futureBoard = board->Clone ();
@@ -284,7 +284,7 @@ TicTacToeAI::FindBestMove (TicTacToeBoard* board, USHORT &px, USHORT &py, BOARD_
 	int i, j, score= 0, futureScore= 0;
 	USHORT x, y;
 
-	/* calculate all AI scores */
+	// calculate all AI scores
 	for (i= 0; i < BOARD_NO_OF_ROWS; i++)
 	{
 		for (j= 0; j < BOARD_NO_OF_ROWS; j++)
@@ -293,7 +293,7 @@ TicTacToeAI::FindBestMove (TicTacToeBoard* board, USHORT &px, USHORT &py, BOARD_
 		}
 	}
 
-	/* go through all fields and find cell coordinates with the highest AI score */
+	// go through all fields and find cell coordinates with the highest AI score
 	for (i= 0; i < BOARD_NO_OF_ROWS; i++)
 	{
 		for (j= 0; j < BOARD_NO_OF_ROWS; j++)
@@ -307,11 +307,11 @@ TicTacToeAI::FindBestMove (TicTacToeBoard* board, USHORT &px, USHORT &py, BOARD_
 		}
 	}
 		
-	/* set the best coordinates */
+	// set the best coordinates
 	px= x;
 	py= y;
 
-	/* return the highest score */
+	// return the highest score
 	return score;
 }
 

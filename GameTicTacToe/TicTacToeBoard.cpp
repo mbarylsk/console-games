@@ -1,5 +1,5 @@
 /*
-Copyright(C) 2012-2016  Marcin Barylski
+Copyright(C) 2012-2018  Marcin Barylski
 
 This program is free software : you can redistribute it and / or modify
 it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@ TicTacToeBoard::TicTacToeBoard (void)
 {
 	int i, j;
 
-	/* inits main board - all fields are empty */
+	// inits main board - all fields are empty
 	for (i= 0; i < BOARD_NO_OF_ROWS; i++)
 	{
 		for (j= 0; j < BOARD_NO_OF_ROWS; j++)
@@ -56,7 +56,7 @@ Marks move on board
 int 
 TicTacToeBoard::MarkMove (USHORT x, USHORT y, BOARD_CELL_STATE mark)
 {
-	/* check boundaries */
+	// check boundaries
 	if ((x < 0) || ( x >= BOARD_NO_OF_ROWS))
 	{
 		return MOVE_ERROR_X_INCORRECT;
@@ -66,7 +66,7 @@ TicTacToeBoard::MarkMove (USHORT x, USHORT y, BOARD_CELL_STATE mark)
 		return MOVE_ERROR_Y_INCORRECT;
 	}
 
-	/* mark a sign on board if not marked yet*/
+	// mark a sign on board if not marked yet
 	if (this->board[x][y] == EMPTY)
 	{
 		this->board[x][y]= mark;
@@ -105,12 +105,12 @@ TicTacToeBoard::GetWinner (void) const
 		}
 		if ((result == winningX) || (result == winningO))
 		{
-			/* the first mark in the line indicates the winner */
+			// the first mark in the line indicates the winner
 			return (this->board[i][0]);			
 		}
 	}
 
-	/* discover vertical lines */
+	// discover vertical lines
 	for (j= 0; j < BOARD_NO_OF_ROWS; j++)
 	{
 		result= 1;
@@ -120,12 +120,12 @@ TicTacToeBoard::GetWinner (void) const
 		}
 		if ((result == winningX) || (result == winningO))
 		{
-			/* the first mark in the line indicates the winner */
+			// the first mark in the line indicates the winner
 			return (this->board[0][j]);			
 		}
 	}
 
-	/* discover cross lines */
+	// discover cross lines
 	result= 1;
 	for (i= 0; i < BOARD_NO_OF_ROWS; i++)
 	{
@@ -133,7 +133,7 @@ TicTacToeBoard::GetWinner (void) const
 	}
 	if ((result == winningX) || (result == winningO))
 	{
-		/* the first mark in the line indicates the winner */
+		// the first mark in the line indicates the winner
 		return (this->board[0][0]);
 	}
 	result= 1;
@@ -143,11 +143,11 @@ TicTacToeBoard::GetWinner (void) const
 	}
 	if ((result == winningX) || (result == winningO))
 	{
-		/* the first mark in the line indicates the winner */
+		// the first mark in the line indicates the winner
 		return (this->board[0][BOARD_NO_OF_ROWS - 1]);
 	}
 
-	/* no winner yet */
+	// no winner yet
 	return (EMPTY);
 }
 
@@ -162,14 +162,14 @@ TicTacToeBoard::IsFull (void) const
 	{
 		for (j= 0; j < BOARD_NO_OF_ROWS; j++)
 		{
-			/* check for any empty field left */
+			// check for any empty field left
 			if (this->board[i][j] == EMPTY)
 			{
 				return false;
 			}
 		}
 	}
-	/* all fields are not empty */
+	// all fields are not empty
 	return true;	
 }
 
@@ -180,11 +180,11 @@ bool
 TicTacToeBoard::IsWinPossible (void) const
 {
 	int i, j;
-	/* 8 possible winning lines: 3 horizontal, 3 vertical, 2 diagonal */
+	// 8 possible winning lines: 3 horizontal, 3 vertical, 2 diagonal
 	unsigned short int result= 8;
 	unsigned short int sumPlayer1, sumPlayer2;
 
-	/* discover horizontal line impossibility */
+	// discover horizontal line impossibility
 	for (i= 0; i < BOARD_NO_OF_ROWS; i++)
 	{
 		sumPlayer1= 0;
@@ -206,7 +206,7 @@ TicTacToeBoard::IsWinPossible (void) const
 		}
 	}
 
-	/* discover vertical line impossibility */
+	// discover vertical line impossibility
 	for (j= 0; j < BOARD_NO_OF_ROWS; j++)
 	{
 		sumPlayer1= 0;
@@ -228,7 +228,7 @@ TicTacToeBoard::IsWinPossible (void) const
 		}
 	}
 
-	/* discover up-left, down-right cross line danger */
+	// discover up-left, down-right cross line danger
 	sumPlayer1= 0;
 	sumPlayer2= 0;
 	for (i= 0, j= 0; i < BOARD_NO_OF_ROWS, j < BOARD_NO_OF_ROWS; i++, j++)
@@ -247,7 +247,7 @@ TicTacToeBoard::IsWinPossible (void) const
 		result--;
 	}
 
-	/* discover down-left, up-right cross line danger */
+	// discover down-left, up-right cross line danger
 	sumPlayer1= 0;
 	sumPlayer2= 0;
 	for (i= BOARD_NO_OF_ROWS- 1, j= 0; i >= 0, j < BOARD_NO_OF_ROWS; i--, j++)
@@ -266,10 +266,10 @@ TicTacToeBoard::IsWinPossible (void) const
 		result--;
 	}
 
-	/* check if any of possible winning lines is still possible to be drawn */
+	// check if any of possible winning lines is still possible to be drawn
 	if (result > 0)
 	{
-		/* still win is possible */
+		// still win is possible
 		return true;
 	}
 	else

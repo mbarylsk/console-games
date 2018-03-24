@@ -1,5 +1,5 @@
 /*
-Copyright(C) 2012-2016  Marcin Barylski
+Copyright(C) 2012-2018  Marcin Barylski
 
 This program is free software : you can redistribute it and / or modify
 it under the terms of the GNU General Public License as published by
@@ -24,14 +24,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <iostream>
 
-/* Console colors */
+// Console colors
 enum COLORS {RED = 12, 
 	         YELLOW = 14, 
 			 WHITE = 15
             };
 
-/* Coordinates of the mark */
+// Coordinates of the mark
 typedef unsigned short int USHORT;
 
-/* Internal counters */
+// Internal counters
 typedef unsigned int UINT;
